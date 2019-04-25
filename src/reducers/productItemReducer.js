@@ -2,10 +2,11 @@ import {FETCH_PRODUCTS} from '../constants/ActionTypes';
 import keyBy from 'lodash/keyBy';
 
 const initialState = {
-    data: {}
+    productList: {}
 };
 
 const productItemReducer = (state = initialState, action)=> {
+    console.log('Action received', action);
     switch (action.type) {
         case FETCH_PRODUCTS:
             return {
