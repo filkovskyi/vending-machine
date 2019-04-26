@@ -1,19 +1,13 @@
-import axios from 'axios';
-import {FETCH_PRODUCTS} from '../constants/ActionTypes';
+import shop from '../api/server'
+import * as types from '../constants/ActionTypes'
 
-export const fetchProducts = () => dispatch => {
+const reciveProducts = products => ({
+    type: types.RECEIVE_PRODUCTS,
+    products
+});
 
-    // const request = axios.get('api/product_items.json');
-    // return {
-    //     type: FETCH_PRODUCTS,
-    //     payload: request
-    // };
-    axios.get('api/product_items.json').then(products => {
-        console.log(products);
-        dispatch({
-            type: FETCH_PRODUCTS,
-            payload: products
-        });
-    });
+export const getAllProducts = () => dispatch => {
+    shop.getProducts(products => {
+        dispatch(reciveProducts(products))
+    })
 };
-
